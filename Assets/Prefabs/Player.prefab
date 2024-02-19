@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 3031865112827318110}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.26, y: 8.484, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -65,7 +65,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 5
-  _jumpHeight: 10
+  _jumpHeight: 5
+  _animator: {fileID: 6036932923479368677}
 --- !u!143 &5751168897594904938
 CharacterController:
   m_ObjectHideFlags: 0
@@ -327,8 +328,39 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ac8ab5c69a614184db056b1e43d38feb,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6036932923479368677}
   m_SourcePrefab: {fileID: 100100000, guid: ac8ab5c69a614184db056b1e43d38feb, type: 3}
+--- !u!1 &5087653285813469314 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: ac8ab5c69a614184db056b1e43d38feb,
+    type: 3}
+  m_PrefabInstance: {fileID: 5358034944571473363}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &6036932923479368677
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5087653285813469314}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1888361e46622ad4cb70edde0d8f8ded, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &5607308201154484792 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ac8ab5c69a614184db056b1e43d38feb,

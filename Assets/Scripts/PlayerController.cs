@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float _speed = 5f;
     [SerializeField] private float _jumpHeight = 10f;
+    [SerializeField] private Animator _animator;
 
     private float _fallVelocity;
     private Vector3 _moveVector;
@@ -13,10 +12,41 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        _controller = GetComponent<CharacterController>();
+        InitComponents();
     }
 
     private void Update()
+    {
+        MoveInputUpdate();
+    }
+
+    private void FixedUpdate()
+    {
+        Move();
+        Gravity();
+    }
+
+    private void InitComponents()
+    {
+        _controller = GetComponent<CharacterController>();
+    }
+
+    private void Gravity()
+    {
+        if (_controller.isGrounded)
+            _fallVelocity = 0f;
+        else
+            _fallVelocity += -Physics.gravity.y * Time.fixedDeltaTime;
+
+        _controller.Move(_fallVelocity * Time.fixedDeltaTime * Vector3.down);
+    }
+
+    private void Move()
+    {
+        _controller.Move(_speed * Time.fixedDeltaTime * _moveVector);
+    }
+
+    private void MoveInputUpdate()
     {
         _moveVector = Vector3.zero;
 
@@ -41,18 +71,9 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && _controller.isGrounded)
         {
             _fallVelocity = -_jumpHeight;
+            _animator.SetTrigger("IsJumping");
         }
-    }
 
-    private void FixedUpdate()
-    {
-        _controller.Move(_speed * Time.fixedDeltaTime * _moveVector);
-
-        if (_controller.isGrounded)
-            _fallVelocity = 0f;
-        else
-            _fallVelocity += -Physics.gravity.y * Time.fixedDeltaTime;
-
-        _controller.Move(_fallVelocity * Time.fixedDeltaTime * Vector3.down);
+        _animator.SetBool("IsRunning", _moveVector != Vector3.zero);
     }
 }

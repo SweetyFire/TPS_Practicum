@@ -2211,6 +2211,12 @@ OffMeshLink:
   m_BiDirectional: 1
   m_Activated: 1
   m_AutoUpdatePositions: 0
+--- !u!4 &1902526444 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 483790827545605653, guid: 95adf1dc7481b334e8d8ca2cfba13cb8,
+    type: 3}
+  m_PrefabInstance: {fileID: 742919069}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1903180701
 GameObject:
   m_ObjectHideFlags: 0
@@ -2952,8 +2958,8 @@ NavMeshAgent:
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_AngularSpeed: 700
+  m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -2978,6 +2984,8 @@ MonoBehaviour:
   - {fileID: 580980602}
   - {fileID: 1504070993}
   - {fileID: 901255366}
+  _player: {fileID: 1902526444}
+  _viewAngle: 90
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
