@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 97059020}
   - component: {fileID: 97059019}
   - component: {fileID: 97059022}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: step (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -259,7 +259,7 @@ GameObject:
   - component: {fileID: 153956476}
   - component: {fileID: 153956475}
   - component: {fileID: 153956478}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Wall (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -382,7 +382,7 @@ GameObject:
   - component: {fileID: 267440877}
   - component: {fileID: 267440876}
   - component: {fileID: 267440879}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: step
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -567,7 +567,7 @@ GameObject:
   - component: {fileID: 727821212}
   - component: {fileID: 727821211}
   - component: {fileID: 727821214}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: step
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -693,7 +693,7 @@ PrefabInstance:
     - target: {fileID: 483790827545605653, guid: 95adf1dc7481b334e8d8ca2cfba13cb8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.202
       objectReference: {fileID: 0}
     - target: {fileID: 483790827545605653, guid: 95adf1dc7481b334e8d8ca2cfba13cb8,
         type: 3}
@@ -739,6 +739,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3031865112827318110, guid: 95adf1dc7481b334e8d8ca2cfba13cb8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3729059007278779675, guid: 95adf1dc7481b334e8d8ca2cfba13cb8,
+        type: 3}
+      propertyPath: _groundCheckRadius
+      value: 0.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 3729059007278779675, guid: 95adf1dc7481b334e8d8ca2cfba13cb8,
+        type: 3}
+      propertyPath: _groundCheckMask.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4818863624489460827, guid: 95adf1dc7481b334e8d8ca2cfba13cb8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -786,7 +806,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 880964578}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ENVIRONMENT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -870,7 +890,7 @@ GameObject:
   - component: {fileID: 1116310408}
   - component: {fileID: 1116310407}
   - component: {fileID: 1116310410}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: step (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -993,7 +1013,7 @@ GameObject:
   - component: {fileID: 1255491002}
   - component: {fileID: 1255491001}
   - component: {fileID: 1255491004}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: step
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1116,7 +1136,7 @@ GameObject:
   - component: {fileID: 1255841043}
   - component: {fileID: 1255841042}
   - component: {fileID: 1255841041}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Wall (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1239,7 +1259,7 @@ GameObject:
   - component: {fileID: 1276797249}
   - component: {fileID: 1276797248}
   - component: {fileID: 1276797251}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: step (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1425,7 +1445,7 @@ GameObject:
   - component: {fileID: 1347801531}
   - component: {fileID: 1347801530}
   - component: {fileID: 1347801533}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: step (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1548,7 +1568,7 @@ GameObject:
   - component: {fileID: 1348374606}
   - component: {fileID: 1348374605}
   - component: {fileID: 1348374608}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: step
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1820,7 +1840,7 @@ GameObject:
   - component: {fileID: 1599492305}
   - component: {fileID: 1599492304}
   - component: {fileID: 1599492307}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: step (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1943,7 +1963,7 @@ GameObject:
   - component: {fileID: 1648215336}
   - component: {fileID: 1648215335}
   - component: {fileID: 1648215338}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: step (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2101,7 +2121,7 @@ GameObject:
   - component: {fileID: 1886113314}
   - component: {fileID: 1886113313}
   - component: {fileID: 1886113316}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Wall (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2230,7 +2250,7 @@ GameObject:
   - component: {fileID: 1903180703}
   - component: {fileID: 1903180702}
   - component: {fileID: 1903180706}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Slope
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2353,7 +2373,7 @@ GameObject:
   - component: {fileID: 2002234203}
   - component: {fileID: 2002234202}
   - component: {fileID: 2002234205}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2476,7 +2496,7 @@ GameObject:
   - component: {fileID: 2019969852}
   - component: {fileID: 2019969851}
   - component: {fileID: 2019969854}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2678,7 +2698,7 @@ GameObject:
   - component: {fileID: 2035481322}
   - component: {fileID: 2035481321}
   - component: {fileID: 2035481320}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Wall (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2801,7 +2821,7 @@ GameObject:
   - component: {fileID: 2124823656}
   - component: {fileID: 2124823655}
   - component: {fileID: 2124823659}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bridge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2928,7 +2948,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2143963149
 Transform:
   m_ObjectHideFlags: 0

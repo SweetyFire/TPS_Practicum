@@ -1,3 +1,4 @@
+using System.Xml.Schema;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -22,26 +23,26 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Move();
-        Gravity();
-    }
+        MoveFixedUpdate();
+        GravityFixedUpdate();
+    } 
 
     private void InitComponents()
     {
         _controller = GetComponent<CharacterController>();
     }
 
-    private void Gravity()
+    private void GravityFixedUpdate()
     {
         if (_controller.isGrounded)
-            _fallVelocity = 0f;
+            _fallVelocity = 1f;
         else
-            _fallVelocity += -Physics.gravity.y * Time.fixedDeltaTime;
+            _fallVelocity -= Physics.gravity.y * Time.fixedDeltaTime;
 
         _controller.Move(_fallVelocity * Time.fixedDeltaTime * Vector3.down);
     }
 
-    private void Move()
+    private void MoveFixedUpdate()
     {
         _controller.Move(_speed * Time.fixedDeltaTime * _moveVector);
     }
