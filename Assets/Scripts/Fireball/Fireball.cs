@@ -4,6 +4,7 @@ public class Fireball : MonoBehaviour
 {
     [SerializeField] private float _flySpeed = 100f;
     [SerializeField] private float _lifeTime = 3f;
+    [SerializeField] private float _damage = 10f;
 
     private Rigidbody _rb;
 
@@ -20,6 +21,7 @@ public class Fireball : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        DamageEnemy(collision);
         DestroyFireball();
     }
 
@@ -36,5 +38,13 @@ public class Fireball : MonoBehaviour
     private void DestroyFireball()
     {
         Destroy(gameObject);
+    }
+
+    private void DamageEnemy(Collision collision)
+    {
+        if (collision.transform.TryGetComponent<EnemyHealth>(out var enemy))
+        {
+            enemy.TakeDamage(_damage);
+        }
     }
 }
