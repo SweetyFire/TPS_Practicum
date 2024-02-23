@@ -33,12 +33,12 @@ public class PlayerController : MonoBehaviour
 
     private void GravityFixedUpdate()
     {
+        _controller.Move(_fallVelocity * Time.fixedDeltaTime * Vector3.down);
+
         if (_controller.isGrounded)
             _fallVelocity = 1f;
         else
             _fallVelocity -= Physics.gravity.y * Time.fixedDeltaTime;
-
-        _controller.Move(_fallVelocity * Time.fixedDeltaTime * Vector3.down);
     }
 
     private void MoveFixedUpdate()

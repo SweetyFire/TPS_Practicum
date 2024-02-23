@@ -5,12 +5,12 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
-    [SerializeField] private List<Transform> _patrolPoints = new();
     [SerializeField] private Transform _player;
     [SerializeField] private float _viewAngle = 90f;
+    [SerializeField] private float _minDetectDistance = 10f;
+    [SerializeField] private List<Transform> _patrolPoints = new();
 
     private NavMeshAgent _navMeshAgent;
-    private bool _isPlayerNoticed;
 
     private void Awake()
     {
@@ -27,9 +27,14 @@ public class EnemyAI : MonoBehaviour
     {
         while (true)
         {
-            NoticePlayerUpdate();
-            ChaseUpdate();
-            PatrolUpdate();
+            if (CheckPlayer())
+            {
+                ChaseUpdate();
+            }
+            else
+            {
+                PatrolUpdate();
+            }
 
             yield return new WaitForSeconds(0.2f);
         }
@@ -37,8 +42,6 @@ public class EnemyAI : MonoBehaviour
 
     private void PatrolUpdate()
     {
-        if (_isPlayerNoticed) return;
-
         if (_navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance)
         {
             PickNewPatrolPoint();
@@ -47,34 +50,33 @@ public class EnemyAI : MonoBehaviour
 
     private void PickNewPatrolPoint()
     {
-        _navMeshAgent.destination = _patrolPoints[Random.Range(0, _patrolPoints.Count)].position;
+        _navMeshAgent.SetDestination(_patrolPoints[Random.Range(0, _patrolPoints.Count)].position);
     }
 
-    private void NoticePlayerUpdate()
+    private bool CheckPlayer()
     {
-        _isPlayerNoticed = false;
-
         if (_player != null)
         {
+            if (Vector3.Distance(transform.position, _player.position) > _minDetectDistance)
+                return false;
+
             Vector3 direction = _player.position - transform.position;
-            if (Vector3.Angle(transform.forward, direction) < _viewAngle)
-            {
-                if (Physics.Raycast(transform.position + Vector3.up, direction, out RaycastHit hit))
-                {
-                    if (hit.collider.gameObject == _player.gameObject)
-                    {
-                        _isPlayerNoticed = true;
-                    }
-                }
-            }
+
+            if (Vector3.Angle(transform.forward, direction) > _viewAngle)
+                return false;
+
+            if (!Physics.Raycast(transform.position + Vector3.up, direction, out RaycastHit hit))
+                return false;
+
+            if (hit.collider.gameObject == _player.gameObject)
+                return true;
         }
+
+        return false;
     }
 
     private void ChaseUpdate()
     {
-        if (_isPlayerNoticed)
-        {
-            _navMeshAgent.destination = _player.position;
-        }
+        _navMeshAgent.destination = _player.position;
     }
 }
