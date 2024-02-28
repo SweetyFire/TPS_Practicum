@@ -10,6 +10,9 @@ public class PlayerController : MonoBehaviour
     private Vector3 _moveVector;
     private CharacterController _controller;
 
+    private Vector2 _speedVector;
+    private Vector2 _currentSpeedVector;
+
     private void Awake()
     {
         InitComponents();
@@ -49,23 +52,28 @@ public class PlayerController : MonoBehaviour
     private void MoveInputUpdate()
     {
         _moveVector = Vector3.zero;
+        _speedVector = Vector2.zero;
 
         if (Input.GetKey(KeyCode.W))
         {
             _moveVector += transform.forward;
+            _speedVector.y = 1;
         }
         else if (Input.GetKey(KeyCode.S))
         {
             _moveVector -= transform.forward;
+            _speedVector.y = -1;
         }
 
         if (Input.GetKey(KeyCode.D))
         {
             _moveVector += transform.right;
+            _speedVector.x = 1;
         }
         else if (Input.GetKey(KeyCode.A))
         {
             _moveVector -= transform.right;
+            _speedVector.x = -1;
         }
 
         if (Input.GetKeyDown(KeyCode.Space) && _controller.isGrounded)
@@ -74,6 +82,17 @@ public class PlayerController : MonoBehaviour
             _animator.SetTrigger("IsJumping");
         }
 
-        _animator.SetBool("IsRunning", _moveVector != Vector3.zero);
+        _currentSpeedVector = Vector2.Lerp(_currentSpeedVector, _speedVector, 8f * Time.deltaTime);
+        _animator.SetFloat("SpeedX", _currentSpeedVector.x);
+        _animator.SetFloat("SpeedZ", _currentSpeedVector.y);
+
+        if (_moveVector == Vector3.zero)
+        {
+            _animator.SetBool("IsRunning", false);
+        }
+        else
+        {
+            _animator.SetBool("IsRunning", true);
+        }
     }
 }
