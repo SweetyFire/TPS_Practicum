@@ -9,6 +9,9 @@ public class FireballSource : MonoBehaviour
     private void Awake()
     {
         InitComponents();
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     private void Update()
