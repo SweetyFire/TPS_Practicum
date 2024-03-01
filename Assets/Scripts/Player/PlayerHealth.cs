@@ -4,6 +4,8 @@ public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private float _maxValue = 100f;
     [SerializeField] private RectTransform _valueStatusRect;
+    [SerializeField] private GameObject _gameplayUI;
+    [SerializeField] private GameObject _gameOverScreen;
 
     private float _value;
 
@@ -26,7 +28,11 @@ public class PlayerHealth : MonoBehaviour
 
     private void DestroyMe()
     {
-        Destroy(gameObject);
+        _gameplayUI.SetActive(false);
+        _gameOverScreen.SetActive(true);
+        GetComponent<PlayerController>().enabled = false;
+        GetComponent<FireballCaster>().enabled = false;
+        GetComponent<CameraRotation>().enabled = false;
     }
 
     private void DrawHealthbar()

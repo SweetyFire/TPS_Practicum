@@ -26,6 +26,11 @@ public class EnemyAI : MonoBehaviour
         StartCoroutine(LogicIE());
     }
 
+    private void Update()
+    {
+        RotateToPlayerUpdate();
+    }
+
     private void InitComponents()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
@@ -102,9 +107,19 @@ public class EnemyAI : MonoBehaviour
         if (_navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance)
         {
             _playerHealth.TakeDamage(_damage * waitTime);
+        }
+    }
+
+    private void RotateToPlayerUpdate()
+    {
+        if (!_seePlayer)
+            return;
+
+        if (_navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance)
+        {
             Vector3 direction = _player.position - transform.position;
             Quaternion rot = Quaternion.LookRotation(direction, Vector3.up);
-            transform.rotation = Quaternion.Lerp(transform.rotation, rot, waitTime);
+            transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * 6f);
         }
     }
 }
