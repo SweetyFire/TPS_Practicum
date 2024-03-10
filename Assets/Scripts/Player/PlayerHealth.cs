@@ -6,6 +6,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private RectTransform _valueStatusRect;
     [SerializeField] private GameObject _gameplayUI;
     [SerializeField] private GameObject _gameOverScreen;
+    [SerializeField] private Animator _animator;
 
     private float _value;
 
@@ -15,9 +16,15 @@ public class PlayerHealth : MonoBehaviour
         DrawHealthbar();
     }
 
+    public bool IsAllive()
+    {
+        return _value > 0;
+    }
+
     public void TakeDamage(float damage)
     {
-        _value -= damage;
+        _value = Mathf.Clamp(_value - damage, 0, _maxValue);
+
         if (_value <= 0)
         {
             DestroyMe();
@@ -30,9 +37,10 @@ public class PlayerHealth : MonoBehaviour
     {
         _gameplayUI.SetActive(false);
         _gameOverScreen.SetActive(true);
-        GetComponent<PlayerController>().enabled = false;
+        GetComponent<PlayerController>().DisableInput();
         GetComponent<FireballCaster>().enabled = false;
         GetComponent<CameraRotation>().enabled = false;
+        _animator.SetTrigger("IsDead");
     }
 
     private void DrawHealthbar()

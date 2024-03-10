@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3391815807761277659}
   - component: {fileID: 6340570303072479078}
   - component: {fileID: 8223210394489728619}
+  - component: {fileID: 6279981231561820580}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -103,6 +104,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &6279981231561820580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1336588359948366803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 499791b95bda1374e831175d1ab0806a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameOverScreen: {fileID: 8982047249007661988}
 --- !u!1 &2828161325419514803
 GameObject:
   m_ObjectHideFlags: 0
@@ -334,13 +348,13 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 1.72
+  m_Height: 1.8
   m_Radius: 0.3
   m_SlopeLimit: 45
   m_StepOffset: 0.3
-  m_SkinWidth: 0.08
+  m_SkinWidth: 0.01
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.94, z: 0}
+  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!114 &8474409641914107257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -403,6 +417,7 @@ MonoBehaviour:
   _valueStatusRect: {fileID: 7152135163622879996}
   _gameplayUI: {fileID: 2828161325419514803}
   _gameOverScreen: {fileID: 6778490213395023529}
+  _animator: {fileID: 6036932923479368677}
 --- !u!1 &3051212835122611497
 GameObject:
   m_ObjectHideFlags: 0
@@ -626,7 +641,6 @@ GameObject:
   - component: {fileID: 3802076118840437727}
   - component: {fileID: 7525369745554066162}
   - component: {fileID: 4490795919982830366}
-  - component: {fileID: 3533730180658986519}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -674,7 +688,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.8}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -691,21 +705,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3533730180658986519
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3752785140460815362}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8035a5b77a79aa439fe6cdc98bc33b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _enabledColor: {r: 0, g: 0, b: 0, a: 0.8}
-  _disabledColor: {r: 0, g: 0, b: 0, a: 0}
-  _updateColorSpeed: 4
 --- !u!1 &4818863624489460827
 GameObject:
   m_ObjectHideFlags: 0
@@ -1100,6 +1099,7 @@ GameObject:
   - component: {fileID: 4130172276273804215}
   - component: {fileID: 8830736005426402303}
   - component: {fileID: 609651130538942171}
+  - component: {fileID: 8982047249007661988}
   m_Layer: 5
   m_Name: GameOverScreen
   m_TagString: Untagged
@@ -1164,6 +1164,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daf58f2b9b924b94694305e72f849fc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8982047249007661988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6778490213395023529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c7796fe2f978684d9b05e5b964808bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _backgroundImage: {fileID: 4490795919982830366}
+  _gameOverText: {fileID: 4092454013189135081}
+  _hintText: {fileID: 5395402314402856474}
+  _disabledBackgroundColor: {r: 0, g: 0, b: 0, a: 0}
+  _disabledGameOverTextColor: {r: 1, g: 1, b: 1, a: 0}
+  _disabledHintTextColor: {r: 0.69803923, g: 0.69803923, b: 0.69803923, a: 0}
+  _animationSpeed: 3
 --- !u!1 &7078756323410560948
 GameObject:
   m_ObjectHideFlags: 0

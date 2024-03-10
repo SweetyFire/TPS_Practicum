@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     private Vector2 _speedVector;
     private Vector2 _currentSpeedVector;
 
+    private bool _disabledInput;
+
     private void Awake()
     {
         InitComponents();
@@ -46,6 +48,9 @@ public class PlayerController : MonoBehaviour
 
     private void MoveFixedUpdate()
     {
+        if (_disabledInput) return;
+
+        _moveVector = _moveVector.normalized;
         _controller.Move(_speed * Time.fixedDeltaTime * _moveVector);
     }
 
@@ -53,6 +58,9 @@ public class PlayerController : MonoBehaviour
     {
         _moveVector = Vector3.zero;
         _speedVector = Vector2.zero;
+
+        if (_disabledInput) return;
+
 
         if (Input.GetKey(KeyCode.W))
         {
@@ -94,5 +102,28 @@ public class PlayerController : MonoBehaviour
         {
             _animator.SetBool("IsRunning", true);
         }
+
+        if (_fallVelocity > 1)
+        {
+            _animator.SetBool("IsFalling", true);
+        }
+        else
+        {
+            _animator.SetBool("IsFalling", false);
+        }
+
+        if (_controller.isGrounded)
+        {
+            _animator.SetBool("IsGrounded", true);
+        }
+        else
+        {
+            _animator.SetBool("IsGrounded", false);
+        }
+    }
+
+    public void DisableInput()
+    {
+        _disabledInput = true;
     }
 }
