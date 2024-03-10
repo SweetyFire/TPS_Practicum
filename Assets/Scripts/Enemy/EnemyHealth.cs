@@ -21,7 +21,7 @@ public class EnemyHealth : MonoBehaviour
 
     private void DestroyMe()
     {
-        _animator.SetTrigger("Death");
+        _animator.SetBool("IsDead", true);
         EnemyAI _enemy = GetComponent<EnemyAI>();
         _enemy.StopAllCoroutines();
         _enemy.enabled = false;

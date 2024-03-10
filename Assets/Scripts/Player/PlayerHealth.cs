@@ -35,12 +35,12 @@ public class PlayerHealth : MonoBehaviour
 
     private void DestroyMe()
     {
+        _animator.SetBool("IsDead", true);
         _gameplayUI.SetActive(false);
         _gameOverScreen.SetActive(true);
         GetComponent<PlayerController>().DisableInput();
         GetComponent<FireballCaster>().enabled = false;
         GetComponent<CameraRotation>().enabled = false;
-        _animator.SetTrigger("IsDead");
     }
 
     private void DrawHealthbar()
