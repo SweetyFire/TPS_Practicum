@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Grenade : MonoBehaviour
 {
+    public float damage = 50f;
     [SerializeField] private float _delay;
     [SerializeField] private GameObject _explosionPrefab;
 
@@ -11,20 +12,18 @@ public class Grenade : MonoBehaviour
         StartCoroutine(ExplodeIE());
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        
-    }
-
     private IEnumerator ExplodeIE()
     {
         yield return new WaitForSeconds(_delay);
         Explode();
     }
 
-    private void Explode()
+    public void Explode()
     {
+        GetComponent<Collider>().enabled = false;
+        StopAllCoroutines();
         Destroy(gameObject);
-        Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
+        Explosion explosion = Instantiate(_explosionPrefab, transform.position, Quaternion.identity).GetComponent<Explosion>();
+        explosion.damage = damage;
     }
 }

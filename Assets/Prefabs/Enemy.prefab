@@ -113,6 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 100
+  _experienceAfterDestroy: 30
   _animator: {fileID: 1884563434613438977}
 --- !u!1001 &1884563434603941729
 PrefabInstance:

@@ -16,10 +16,7 @@ public class PlayerHealth : MonoBehaviour
         DrawHealthbar();
     }
 
-    public bool IsAllive()
-    {
-        return _value > 0;
-    }
+    public bool IsAlive() => _value > 0f;
 
     public void TakeDamage(float damage)
     {
@@ -41,6 +38,7 @@ public class PlayerHealth : MonoBehaviour
         GetComponent<PlayerController>().DisableInput();
         GetComponent<FireballCaster>().enabled = false;
         GetComponent<CameraRotation>().enabled = false;
+        GetComponent<GrenadeCaster>().enabled = false;
     }
 
     private void DrawHealthbar()

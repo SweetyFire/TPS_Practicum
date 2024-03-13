@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FirstAidKit : MonoBehaviour
+public class Aidkit : MonoBehaviour
 {
     [SerializeField] private float _health = 10f;
     [SerializeField] private Transform _particles;

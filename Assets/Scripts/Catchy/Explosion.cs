@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class Explosion : MonoBehaviour
 {
+    public float damage = 25f;
+
     [SerializeField] private float _maxSize = 5f;
     [SerializeField] private float _sizeUpdateSpeed = 1f;
-    [SerializeField] private float _damage = 25f;
     [SerializeField] private Transform _particles;
 
     private void Awake()
@@ -28,12 +29,17 @@ public class Explosion : MonoBehaviour
     {
         if (other.TryGetComponent<PlayerHealth>(out var playerHealth))
         {
-            playerHealth.TakeDamage(_damage);
+            playerHealth.TakeDamage(damage);
         }
 
         if (other.TryGetComponent<EnemyHealth>(out var enemyHealth))
         {
-            enemyHealth.TakeDamage(_damage);
+            enemyHealth.TakeDamage(damage);
+        }
+
+        if (other.TryGetComponent<Grenade>(out var grenade))
+        {
+            grenade.Explode();
         }
     }
 

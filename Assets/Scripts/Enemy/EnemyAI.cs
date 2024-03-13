@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -14,13 +14,21 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private Animator _animator;
     [SerializeField] private float _attackDistance = 1f;
 
+    public EnemyHealth Health { get; private set; }
+
     private NavMeshAgent _navMeshAgent;
     private PlayerHealth _playerHealth;
     private bool _seePlayer;
-    
+
     private void Awake()
     {
         InitComponents();
+    }
+
+    public void Init(Transform player, IEnumerable<Transform> patrolPoints)
+    {
+        _player = player;
+        _patrolPoints = patrolPoints.ToList();
     }
 
     private void Start()
@@ -36,13 +44,13 @@ public class EnemyAI : MonoBehaviour
 
     private void InitComponents()
     {
+        Health = GetComponent<EnemyHealth>();
         _navMeshAgent = GetComponent<NavMeshAgent>();
     }
 
     private void InitComponentsStart()
     {
-        if (_player != null)
-            _playerHealth = _player.GetComponent<PlayerHealth>();
+        if (_player != null) _playerHealth = _player.GetComponent<PlayerHealth>();
     }
 
     private IEnumerator LogicIE()
@@ -78,7 +86,7 @@ public class EnemyAI : MonoBehaviour
         if (_player == null) return;
 
         _seePlayer = false;
-        if (!_playerHealth.IsAllive()) return;
+        if (!_playerHealth.IsAlive()) return;
 
         if (Vector3.Distance(transform.position, _player.position) > _minDetectDistance) return;
 

@@ -6,6 +6,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _jumpHeight = 10f;
     [SerializeField] private Animator _animator;
 
+    public Vector3 SpeedVector => _speedVector;
+    public float CurrentSpeed => _moveVector.magnitude * _speed;
+    public float FallVelocity => _fallVelocity;
+
     private float _fallVelocity;
     private Vector3 _moveVector;
     private CharacterController _controller;

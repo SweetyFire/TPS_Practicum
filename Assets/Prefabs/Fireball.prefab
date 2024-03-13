@@ -148,3 +148,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _flySpeed: 500
   _lifeTime: 3
+  damage: 10
