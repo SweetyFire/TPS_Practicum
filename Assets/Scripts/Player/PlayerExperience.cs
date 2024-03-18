@@ -8,6 +8,7 @@ public class PlayerExperience : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI _levelText;
     [SerializeField] private RectTransform _expereinceStatusBar;
+    [SerializeField] private PlayerHealth _health;
 
     private int _level = 1;
 
@@ -52,6 +53,9 @@ public class PlayerExperience : MonoBehaviour
             gCaster.enabled = true;
         else
             gCaster.enabled = false;
+
+        _health.SetMaxValue(_levels[curLevel].maxHealth);
+        _health.TakeDamage(-_health.MaxValue);
     }
 
     private void DrawUI()

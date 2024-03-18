@@ -13,6 +13,10 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private List<Transform> _patrolPoints = new();
     [SerializeField] private Animator _animator;
     [SerializeField] private float _attackDistance = 1f;
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioSource _footstepAudioSource;
+    [SerializeField] private List<CustomizableSound> _voiceSounds = new();
+    [SerializeField] private SoundMaker _soundMaker;
 
     public EnemyHealth Health { get; private set; }
 
@@ -25,21 +29,42 @@ public class EnemyAI : MonoBehaviour
         InitComponents();
     }
 
-    public void Init(Transform player, IEnumerable<Transform> patrolPoints)
-    {
-        _player = player;
-        _patrolPoints = patrolPoints.ToList();
-    }
-
     private void Start()
     {
         InitComponentsStart();
         StartCoroutine(LogicIE());
+        StartCoroutine(MakeSoundIE());
     }
 
     private void Update()
     {
         RotateToPlayerUpdate();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        TryHearSound(other);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        TryHearSound(other);
+    }
+
+    private void TryHearSound(Collider other)
+    {
+        if (_seePlayer || !_navMeshAgent.enabled) return;
+
+        if (other.TryGetComponent<SoundMaker>(out var _))
+        {
+            _navMeshAgent.destination = other.transform.position;
+        }
+    }
+
+    public void Init(Transform player, IEnumerable<Transform> patrolPoints)
+    {
+        _player = player;
+        _patrolPoints = patrolPoints.ToList();
     }
 
     private void InitComponents()
@@ -124,6 +149,36 @@ public class EnemyAI : MonoBehaviour
             Quaternion rot = Quaternion.LookRotation(direction, Vector3.up);
             transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * 6f);
         }
+    }
+
+    private IEnumerator MakeSoundIE()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(Random.Range(10f, 30f));
+            if (_seePlayer) continue;
+            int soundIndex = Random.Range(0, _voiceSounds.Count);
+            PlayOneShotSound(_voiceSounds[soundIndex]);
+        }
+    }
+
+    public void MakeSound(float radius, CustomizableSound sound)
+    {
+        _soundMaker.MakeSound(radius, _audioSource.GetClipDuration(sound.clip));
+    }
+
+    public void PlayOneShotSound(CustomizableSound sound)
+    {
+        _audioSource.pitch = Random.Range(sound.minPitch, sound.maxPitch);
+        _audioSource.volume = Random.Range(sound.minVolume, sound.maxVolume);
+        _audioSource.PlayOneShot(sound.clip);
+    }
+
+    public void PlayFootsteps(CustomizableSound sound)
+    {
+        _footstepAudioSource.pitch = Random.Range(sound.minPitch, sound.maxPitch);
+        _footstepAudioSource.volume = Random.Range(sound.minVolume, sound.maxVolume);
+        _footstepAudioSource.PlayOneShot(sound.clip);
     }
 
     public void Attack()

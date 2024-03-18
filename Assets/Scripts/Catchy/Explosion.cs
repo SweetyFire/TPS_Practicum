@@ -7,6 +7,8 @@ public class Explosion : MonoBehaviour
     [SerializeField] private float _maxSize = 5f;
     [SerializeField] private float _sizeUpdateSpeed = 1f;
     [SerializeField] private Transform _particles;
+    [SerializeField] private AudibleSoundSource _soundSource;
+    [SerializeField] private CustomizableSound _explosionSound;
 
     private void Awake()
     {
@@ -45,6 +47,8 @@ public class Explosion : MonoBehaviour
 
     private void DestroyMe()
     {
+        AudibleSoundSource source = Instantiate(_soundSource, transform.position, transform.rotation);
+        source.Play(_explosionSound);
         Destroy(gameObject);
     }
 }

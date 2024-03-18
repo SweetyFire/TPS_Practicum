@@ -147,10 +147,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f54e876c12d6ca4399df58954c0ab5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 25
   _maxSize: 15
   _sizeUpdateSpeed: 40
-  _damage: 35
   _particles: {fileID: 6406519641684802671}
+  _soundSource: {fileID: 68961044246948519, guid: 789d414fd652c544aa77eeb1b3fea6d1,
+    type: 3}
+  _explosionSound:
+    clip: {fileID: 8300000, guid: 1ca7906aea47eca428ea2ce435591f83, type: 3}
+    minPitch: 0.9
+    maxPitch: 1.1
+    minVolume: 0.8
+    maxVolume: 1
+    dynamicPan: 0
 --- !u!1 &6980149203391461916
 GameObject:
   m_ObjectHideFlags: 0

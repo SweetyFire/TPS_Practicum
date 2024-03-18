@@ -4,6 +4,7 @@ public class FireballSource : MonoBehaviour
 {
     [SerializeField] private Transform _targetPoint;
     [SerializeField] private float _targetInSkyDistance;
+    [SerializeField] private LayerMask _layerMask;
     private Camera _camera;
 
     private void Awake()
@@ -17,7 +18,7 @@ public class FireballSource : MonoBehaviour
     private void Update()
     {
         Ray ray = _camera.ViewportPointToRay(new(0.5f, 0.7f, 0f));
-        if (Physics.Raycast(ray, out RaycastHit hit))
+        if (Physics.Raycast(ray, out RaycastHit hit, _targetInSkyDistance, _layerMask))
         {
             _targetPoint.position = hit.point;
         }

@@ -5,6 +5,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _speed = 5f;
     [SerializeField] private float _jumpHeight = 10f;
     [SerializeField] private Animator _animator;
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioSource _footstepsAudioSource;
+    [SerializeField] private SoundMaker _soundMaker;
 
     public Vector3 SpeedVector => _speedVector;
     public float CurrentSpeed => _moveVector.magnitude * _speed;
@@ -107,7 +110,7 @@ public class PlayerController : MonoBehaviour
             _animator.SetBool("IsRunning", true);
         }
 
-        if (_fallVelocity > 1)
+        if (_fallVelocity > 3)
         {
             _animator.SetBool("IsFalling", true);
         }
@@ -129,5 +132,25 @@ public class PlayerController : MonoBehaviour
     public void DisableInput()
     {
         _disabledInput = true;
+    }
+
+    public void PlayOneShotSound(CustomizableSound sound)
+    {
+        _audioSource.pitch = Random.Range(sound.minPitch, sound.maxPitch);
+        _audioSource.volume = Random.Range(sound.minVolume, sound.maxVolume);
+        _audioSource.PlayOneShot(sound.clip);
+    }
+
+    public void PlayFootsteps(CustomizableSound sound)
+    {
+        PlayFootsteps(sound, _footstepsAudioSource.maxDistance);
+    }
+
+    public void PlayFootsteps(CustomizableSound sound, float distance)
+    {
+        _footstepsAudioSource.pitch = Random.Range(sound.minPitch, sound.maxPitch);
+        _footstepsAudioSource.volume = Random.Range(sound.minVolume, sound.maxVolume);
+        _footstepsAudioSource.PlayOneShot(sound.clip);
+        _soundMaker.MakeSound(distance, _footstepsAudioSource.GetClipDuration(sound.clip));
     }
 }
