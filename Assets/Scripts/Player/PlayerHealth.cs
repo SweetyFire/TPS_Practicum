@@ -12,6 +12,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private Animator _animator;
     [SerializeField] private AudioSource _hurtAudioSource;
     [SerializeField] private List<CustomizableSound> _hurtSounds = new();
+    [SerializeField] private GameObject _victoryScreen;
 
     private float _value;
 
@@ -45,6 +46,12 @@ public class PlayerHealth : MonoBehaviour
         _maxValue = maxValue;
     }
 
+    public void ShowVictoryScreen()
+    {
+        _victoryScreen.SetActive(true);
+        DisableComponents();
+    }
+
     private void PlayHitSound()
     {
         int soundIndex = Random.Range(0, _hurtSounds.Count);
@@ -61,8 +68,13 @@ public class PlayerHealth : MonoBehaviour
     private void DestroyMe()
     {
         _animator.SetBool("IsDead", true);
-        _gameplayUI.SetActive(false);
         _gameOverScreen.SetActive(true);
+        DisableComponents();
+    }
+
+    private void DisableComponents()
+    {
+        _gameplayUI.SetActive(false);
         GetComponent<PlayerController>().DisableInput();
         GetComponent<FireballCaster>().enabled = false;
         GetComponent<CameraRotation>().enabled = false;

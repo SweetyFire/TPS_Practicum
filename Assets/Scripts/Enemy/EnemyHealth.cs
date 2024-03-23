@@ -10,6 +10,9 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private float _speedThresholdForTakeDamage = 10f;
     [SerializeField] private AudioSource _hurtAudioSource;
     [SerializeField] private List<CustomizableSound> _hurtSounds = new();
+    [SerializeField] private Light _light;
+
+    public float Health => _health;
 
     private PlayerExperience _playerExperience;
 
@@ -69,6 +72,7 @@ public class EnemyHealth : MonoBehaviour
         GetComponent<Collider>().enabled = false;
         GetComponent<NavMeshAgent>().enabled = false;
         enabled = false;
+        _light.gameObject.SetActive(false);
     }
 
     public bool IsAlive() => _health > 0f;

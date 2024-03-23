@@ -16,6 +16,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private List<CustomizableSound> _voiceSounds = new();
     [SerializeField] private SoundMaker _soundMaker;
     [SerializeField] private LayerMask _layerMaskCast;
+    [SerializeField] private List<CustomizableSound> _seePlayerSounds = new();
 
     public EnemyHealth Health { get; private set; }
 
@@ -111,6 +112,8 @@ public class EnemyAI : MonoBehaviour
     {
         if (_player == null) return;
 
+        bool sawPlayer = _seePlayer;
+
         _seePlayer = false;
         if (!_playerHealth.IsAlive()) return;
 
@@ -127,6 +130,11 @@ public class EnemyAI : MonoBehaviour
         {
             _seePlayer = true;
             _navMeshAgent.destination = _player.position;
+
+            if (!sawPlayer)
+            {
+                PlayOneShotSound(_seePlayerSounds[Random.Range(0, _seePlayerSounds.Count)]);
+            }
         }
     }
 

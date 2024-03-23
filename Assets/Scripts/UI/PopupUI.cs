@@ -85,17 +85,55 @@ public class PopupUI : MonoBehaviour
             float writeSpeed = CalculateWriteSpeed(_textQueue[0].text.Length);
             _text.text = string.Empty;
 
-            while (_text.text.Length < _textQueue[0].text.Length)
+            TextDuration curText = _textQueue[0];
+
+            while (charIndex < curText.text.Length)
             {
+                if (curText.text[charIndex] == '<')
+                {
+                    string addText = string.Empty;
+                    while (charIndex < curText.text.Length && curText.text[charIndex] != '>')
+                    {
+                        addText += curText.text[charIndex];
+                        charIndex++;
+                    }
+
+                    if (curText.text[charIndex] == '>')
+                    {
+                        addText += curText.text[charIndex];
+                        charIndex++;
+                    }
+
+                    _text.text += addText;
+                    continue;
+                }
+
                 yield return new WaitForSeconds(writeSpeed);
-                _text.text += _textQueue[0].text[charIndex];
+                _text.text += curText.text[charIndex];
                 charIndex++;
             }
 
-            yield return new WaitForSeconds(_textQueue[0].duration);
+            yield return new WaitForSeconds(curText.duration);
 
             while (_text.text.Length > 0)
             {
+                if (_text.text[0] == '<')
+                {
+                    int startIndex = 0;
+                    while (startIndex < _text.text.Length && _text.text[startIndex] != '>')
+                    {
+                        startIndex++;
+                    }
+
+                    if (_text.text[startIndex] == '>')
+                    {
+                        startIndex++;
+                    }
+
+                    _text.text = _text.text[startIndex..];
+                    continue;
+                }
+
                 yield return new WaitForSeconds(writeSpeed);
                 _text.text = _text.text[1..];
             }

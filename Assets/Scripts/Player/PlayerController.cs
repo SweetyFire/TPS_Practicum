@@ -44,6 +44,7 @@ public class PlayerController : MonoBehaviour
         _popupUI.AddTextToQueue("Двигайся на WASD", 3f);
         _popupUI.AddTextToQueue("Стреляй на ЛКМ", 3f);
         _popupUI.AddTextToQueue("Прыжок на Space", 3f);
+        _popupUI.AddTextToQueue("Цель: Найти <color=#0f86e7>древний артефакт</color>", 3f);
     }
 
     private void Update()
@@ -175,6 +176,7 @@ public class PlayerController : MonoBehaviour
     public void DisableInput()
     {
         _disabledInput = true;
+        _animator.SetBool("IsRunning", false);
     }
 
     public void PlayOneShotSound(CustomizableSound sound)

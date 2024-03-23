@@ -1,9 +1,14 @@
 fileFormatVersion: 2
-guid: a578ef963e8926d47a8ec4d5e40cfc12
+guid: 5fb0e81fba2a2bf4e8375c4f73a144bc
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: GunMetalNewPallete
+    second: {fileID: 2100000, guid: 218463d3fa345b241bafda5a3a88ecd0, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -34,10 +39,7 @@ ModelImporter:
     clipAnimations: []
     isReadable: 0
   meshes:
-    lODScreenPercentages:
-    - 0.25
-    - 0.125
-    - 0.01
+    lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
     addColliders: 0
