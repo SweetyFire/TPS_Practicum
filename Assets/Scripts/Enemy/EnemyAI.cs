@@ -25,6 +25,7 @@ public class EnemyAI : MonoBehaviour
     private NavMeshAgent _navMeshAgent;
     private PlayerHealth _playerHealth;
     private bool _seePlayer;
+    private float _ignoreSoundsTimer;
 
     private void Awake()
     {
@@ -40,7 +41,14 @@ public class EnemyAI : MonoBehaviour
 
     private void Update()
     {
+        IgnoreSoundsUpdate();
         RotateToPlayerUpdate();
+    }
+
+    private void IgnoreSoundsUpdate()
+    {
+        if (_ignoreSoundsTimer > 0f)
+            _ignoreSoundsTimer -= Time.deltaTime;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -55,12 +63,21 @@ public class EnemyAI : MonoBehaviour
 
     private void TryHearSound(Collider other)
     {
-        if (_seePlayer || !_navMeshAgent.enabled) return;
+        if (_seePlayer || !_navMeshAgent.enabled || _ignoreSoundsTimer > 0f) return;
 
         if (other.TryGetComponent<SoundMaker>(out var _))
         {
-            _navMeshAgent.destination = other.transform.position;
+            if (CanGo(other.transform.position))
+                _navMeshAgent.destination = other.transform.position;
+            else
+                _ignoreSoundsTimer = 3f;
         }
+    }
+
+    private bool CanGo(in Vector3 position)
+    {
+        NavMeshPath path = new();
+        return _navMeshAgent.CalculatePath(position, path) && path.status == NavMeshPathStatus.PathComplete;
     }
 
     public void Init(Transform player, IEnumerable<Transform> patrolPoints)

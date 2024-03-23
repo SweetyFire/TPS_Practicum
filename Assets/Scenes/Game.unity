@@ -8,9 +8,8 @@ OcclusionCullingSettings:
     smallestOccluder: 5
     smallestHole: 0.25
     backfaceThreshold: 100
-  m_SceneGUID: e665d773989885942a17f7a11afdf419
-  m_OcclusionCullingData: {fileID: 36300000, guid: 79b03887a4e3e644ba98ac0cdf134f19,
-    type: 2}
+  m_SceneGUID: 00000000000000000000000000000000
+  m_OcclusionCullingData: {fileID: 0}
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
@@ -2469,17 +2468,17 @@ PrefabInstance:
     - target: {fileID: 993279217808547169, guid: c38460d7717e684418341c5ab35f0f21,
         type: 3}
       propertyPath: _maxEnemies
-      value: 20
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 993279217808547169, guid: c38460d7717e684418341c5ab35f0f21,
         type: 3}
       propertyPath: _maxSpawnDelay
-      value: 5
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 993279217808547169, guid: c38460d7717e684418341c5ab35f0f21,
         type: 3}
       propertyPath: _minSpawnDelay
-      value: 2
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 993279217808547169, guid: c38460d7717e684418341c5ab35f0f21,
         type: 3}
@@ -3197,17 +3196,17 @@ PrefabInstance:
     - target: {fileID: 993279217808547169, guid: c38460d7717e684418341c5ab35f0f21,
         type: 3}
       propertyPath: _maxEnemies
-      value: 20
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 993279217808547169, guid: c38460d7717e684418341c5ab35f0f21,
         type: 3}
       propertyPath: _maxSpawnDelay
-      value: 5
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 993279217808547169, guid: c38460d7717e684418341c5ab35f0f21,
         type: 3}
       propertyPath: _minSpawnDelay
-      value: 2
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 993279217808547169, guid: c38460d7717e684418341c5ab35f0f21,
         type: 3}
@@ -3797,12 +3796,12 @@ PrefabInstance:
     - target: {fileID: 993279217808547169, guid: c38460d7717e684418341c5ab35f0f21,
         type: 3}
       propertyPath: _maxSpawnDelay
-      value: 6
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 993279217808547169, guid: c38460d7717e684418341c5ab35f0f21,
         type: 3}
       propertyPath: _minSpawnDelay
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 993279217808547169, guid: c38460d7717e684418341c5ab35f0f21,
         type: 3}
@@ -7184,6 +7183,16 @@ PrefabInstance:
       propertyPath: _player
       value: 
       objectReference: {fileID: 486415247}
+    - target: {fileID: 993279217808547169, guid: c38460d7717e684418341c5ab35f0f21,
+        type: 3}
+      propertyPath: _maxSpawnDelay
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 993279217808547169, guid: c38460d7717e684418341c5ab35f0f21,
+        type: 3}
+      propertyPath: _minSpawnDelay
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 993279217808547169, guid: c38460d7717e684418341c5ab35f0f21,
         type: 3}
       propertyPath: _parentPatrolPoints

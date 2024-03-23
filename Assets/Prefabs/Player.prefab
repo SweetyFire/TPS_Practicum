@@ -134,7 +134,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u041D\u0430\u0436\u043C\u0438 ESC \u0434\u043B\u044F \u043F\u0435\u0440\u0435\u0437\u0430\u043F\u0443\u0441\u043A\u0430"
+  m_text: "\u041D\u0430\u0436\u043C\u0438 Tab \u0434\u043B\u044F \u043F\u0435\u0440\u0435\u0437\u0430\u043F\u0443\u0441\u043A\u0430"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -509,6 +509,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameOverScreen: {fileID: 8982047249007661988}
+  _victoryScreen: {fileID: 2621392370903430984}
 --- !u!1 &1461127824089912757
 GameObject:
   m_ObjectHideFlags: 0
@@ -919,7 +920,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u041D\u0430\u0436\u043C\u0438 ESC \u0434\u043B\u044F \u043F\u0435\u0440\u0435\u0437\u0430\u043F\u0443\u0441\u043A\u0430"
+  m_text: "\u041D\u0430\u0436\u043C\u0438 Tab \u0434\u043B\u044F \u043F\u0435\u0440\u0435\u0437\u0430\u043F\u0443\u0441\u043A\u0430"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1076,7 +1077,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameraAxisTransform: {fileID: 1228130735644903939}
-  _rotationSpeed: 500
+  _rotationSpeed: 180
   _minAngle: -70
   _maxAngle: 70
 --- !u!114 &3729059007278779675
@@ -1129,6 +1130,7 @@ MonoBehaviour:
     dynamicPan: 0
   _soundMaker: {fileID: 2558622831892739924}
   _hearSoundDistance: 6
+  _shootCooldown: 0.2
 --- !u!114 &1684839124577677741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1154,7 +1156,7 @@ MonoBehaviour:
     minVolume: 0.6
     maxVolume: 0.8
     dynamicPan: 0
-  _victoryScreen: {fileID: 2621392370903430984}
+  _victoryScreen: {fileID: 5015619584824758078}
 --- !u!114 &2828018892664084018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2032,6 +2034,9 @@ MonoBehaviour:
   _disabledGameOverTextColor: {r: 1, g: 1, b: 1, a: 0}
   _disabledHintTextColor: {r: 0.69803923, g: 0.69803923, b: 0.69803923, a: 0}
   _animationSpeed: 3
+  _defaultBackgroundColor: {r: 0, g: 0, b: 0, a: 0.8}
+  _defaultGameOverTextColor: {r: 1, g: 1, b: 1, a: 1}
+  _defaultHintTextColor: {r: 0.7, g: 0.7, b: 0.7, a: 1}
 --- !u!1 &5335615019175841657
 GameObject:
   m_ObjectHideFlags: 0
@@ -2770,6 +2775,9 @@ MonoBehaviour:
   _disabledGameOverTextColor: {r: 1, g: 1, b: 1, a: 0}
   _disabledHintTextColor: {r: 0.69803923, g: 0.69803923, b: 0.69803923, a: 0}
   _animationSpeed: 3
+  _defaultBackgroundColor: {r: 0, g: 0, b: 0, a: 0.8}
+  _defaultGameOverTextColor: {r: 1, g: 1, b: 1, a: 1}
+  _defaultHintTextColor: {r: 0.7, g: 0.7, b: 0.7, a: 1}
 --- !u!1 &6900142000399444796
 GameObject:
   m_ObjectHideFlags: 0

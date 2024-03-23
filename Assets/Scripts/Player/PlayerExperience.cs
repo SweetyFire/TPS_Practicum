@@ -84,6 +84,7 @@ public class PlayerExperience : MonoBehaviour
         if (_levels[levelIndex - 1].grenadeDamage <= 0 && _levels[levelIndex].grenadeDamage > 0)
         {
             _popupUI.AddTextToQueue("Теперь ты можешь использовать гранаты на ПКМ", 4f);
+            _popupUI.AddTextToQueue("Гранаты привлекают много внимания", 4f);
         }
     }
 }

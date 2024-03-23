@@ -10,14 +10,24 @@ public class FireballCaster : MonoBehaviour
     [SerializeField] private CustomizableSound _castSound;
     [SerializeField] private SoundMaker _soundMaker;
     [SerializeField] private float _hearSoundDistance = 6f;
+    [SerializeField] private float _shootCooldown = 0.2f;
+
+    private float _cooldown;
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (_cooldown > 0f)
+        {
+            _cooldown -= Time.deltaTime;
+            return;
+        }
+
+        if (Input.GetMouseButton(0))
         {
             Fireball fireball = Instantiate(_fireballPrefab, _shootPoint.position, _shootPoint.rotation);
             fireball.damage = damage;
             PlayCastSound();
+            _cooldown = _shootCooldown;
         }
     }
 

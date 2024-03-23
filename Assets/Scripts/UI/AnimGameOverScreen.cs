@@ -13,9 +13,9 @@ public class AnimGameOverScreen : MonoBehaviour
     [SerializeField] private Color _disabledHintTextColor;
     [SerializeField] private float _animationSpeed = 3f;
 
-    private Color _defaultBackgroundColor;
-    private Color _defaultGameOverTextColor;
-    private Color _defaultHintTextColor;
+    [SerializeField] private Color _defaultBackgroundColor;
+    [SerializeField] private Color _defaultGameOverTextColor;
+    [SerializeField] private Color _defaultHintTextColor;
     private bool _isAnimated;
 
     public void Init()
@@ -54,9 +54,9 @@ public class AnimGameOverScreen : MonoBehaviour
 #if UNITY_EDITOR
     private void OnValidate()
     {
-        _defaultBackgroundColor = _backgroundImage.color;
-        _defaultGameOverTextColor = _gameOverText.color;
-        _defaultHintTextColor = _hintText.color;
+        _backgroundImage.color = _defaultBackgroundColor;
+        _gameOverText.color = _defaultGameOverTextColor;
+        _hintText.color = _defaultHintTextColor;
     }
 #endif
 }
