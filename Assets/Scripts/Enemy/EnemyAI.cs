@@ -6,20 +6,21 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
-    [SerializeField] private Transform _player;
-    [SerializeField] private float _viewAngle = 90f;
-    [SerializeField] private float _minDetectDistance = 10f;
+    [SerializeField] private float _viewAngle = 75f;
+    [SerializeField] private float _minDetectDistance = 20f;
     [SerializeField] private float _damage = 30f;
-    [SerializeField] private List<Transform> _patrolPoints = new();
     [SerializeField] private Animator _animator;
     [SerializeField] private float _attackDistance = 1f;
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private AudioSource _footstepAudioSource;
     [SerializeField] private List<CustomizableSound> _voiceSounds = new();
     [SerializeField] private SoundMaker _soundMaker;
+    [SerializeField] private LayerMask _layerMaskCast;
 
     public EnemyHealth Health { get; private set; }
 
+    private List<Transform> _patrolPoints = new();
+    private Transform _player;
     private NavMeshAgent _navMeshAgent;
     private PlayerHealth _playerHealth;
     private bool _seePlayer;
@@ -113,13 +114,14 @@ public class EnemyAI : MonoBehaviour
         _seePlayer = false;
         if (!_playerHealth.IsAlive()) return;
 
-        if (Vector3.Distance(transform.position, _player.position) > _minDetectDistance) return;
+        float distanceToPlayer = Vector3.Distance(transform.position + Vector3.up, _player.transform.position + Vector3.up);
+        if (distanceToPlayer > _minDetectDistance) return;
 
         Vector3 direction = _player.position - transform.position;
 
         if (Vector3.Angle(transform.forward, direction) > _viewAngle) return;
-
-        if (!Physics.Raycast(transform.position + Vector3.up, direction, out RaycastHit hit)) return;
+        
+        if (!Physics.Raycast(transform.position + Vector3.up, direction, out RaycastHit hit, _minDetectDistance, _layerMaskCast)) return;
 
         if (hit.collider.gameObject == _player.gameObject)
         {

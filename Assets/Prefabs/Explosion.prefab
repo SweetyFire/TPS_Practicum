@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 714686185820127603}
   - component: {fileID: 4785827284330234227}
   - component: {fileID: 989509585914602886}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -171,7 +171,7 @@ GameObject:
   - component: {fileID: 6406519641684802671}
   - component: {fileID: 5955939303015473199}
   - component: {fileID: 6975906342762029481}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}

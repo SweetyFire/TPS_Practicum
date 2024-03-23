@@ -8,10 +8,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private AudioSource _footstepsAudioSource;
     [SerializeField] private SoundMaker _soundMaker;
+    [SerializeField] private float _pushRigidbodiesPower = 4f;
+    [SerializeField] private Collider _cameraCollider;
+    [SerializeField] private SkinnedMeshRenderer _skin;
+    [SerializeField] private CameraController _cameraController;
 
     public Vector3 SpeedVector => _speedVector;
     public float CurrentSpeed => _moveVector.magnitude * _speed;
     public float FallVelocity => _fallVelocity;
+    public Collider CameraCollider => _cameraCollider;
+    public SkinnedMeshRenderer Skin => _skin;
+    public CameraController CameraController => _cameraController;
 
     private float _fallVelocity;
     private Vector3 _moveVector;
@@ -36,7 +43,21 @@ public class PlayerController : MonoBehaviour
     {
         MoveFixedUpdate();
         GravityFixedUpdate();
-    } 
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        Rigidbody body = hit.collider.attachedRigidbody;
+
+        if (body == null || body.isKinematic) return;
+
+        if (hit.moveDirection.y < -0.3f) return;
+
+        Vector3 pushDirection = new(hit.moveDirection.x, 0f, hit.moveDirection.z);
+        //body.velocity = pushDirection * _pushRigidbodiesPower;
+        Vector3 collisionPoint = hit.point;
+        body.AddForceAtPosition(pushDirection * _pushRigidbodiesPower, collisionPoint, ForceMode.Impulse);
+    }
 
     private void InitComponents()
     {
