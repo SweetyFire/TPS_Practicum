@@ -7,4 +7,5 @@ public class PlayerLevel
     public float grenadeDamage;
     public float expForNextLevel;
     public float maxHealth;
+    public float runSpeed;
 }

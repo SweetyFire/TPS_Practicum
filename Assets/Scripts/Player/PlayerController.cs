@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Collider _cameraCollider;
     [SerializeField] private SkinnedMeshRenderer _skin;
     [SerializeField] private CameraController _cameraController;
+    [SerializeField] private PopupUI _popupUI;
 
     public Vector3 SpeedVector => _speedVector;
     public float CurrentSpeed => _moveVector.magnitude * _speed;
@@ -19,10 +20,14 @@ public class PlayerController : MonoBehaviour
     public Collider CameraCollider => _cameraCollider;
     public SkinnedMeshRenderer Skin => _skin;
     public CameraController CameraController => _cameraController;
+    public PopupUI PopupUI => _popupUI;
 
     private float _fallVelocity;
     private Vector3 _moveVector;
     private CharacterController _controller;
+
+    private bool _isRunning;
+    public float runSpeed = 0f;
 
     private Vector2 _speedVector;
     private Vector2 _currentSpeedVector;
@@ -32,6 +37,13 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         InitComponents();
+    }
+
+    private void Start()
+    {
+        _popupUI.AddTextToQueue("Двигайся на WASD", 3f);
+        _popupUI.AddTextToQueue("Стреляй на ЛКМ", 3f);
+        _popupUI.AddTextToQueue("Прыжок на Space", 3f);
     }
 
     private void Update()
@@ -78,8 +90,9 @@ public class PlayerController : MonoBehaviour
     {
         if (_disabledInput) return;
 
+        float speed = _isRunning ? runSpeed : _speed;
         _moveVector = _moveVector.normalized;
-        _controller.Move(_speed * Time.fixedDeltaTime * _moveVector);
+        _controller.Move(speed * Time.fixedDeltaTime * _moveVector);
     }
 
     private void MoveInputUpdate()
@@ -89,6 +102,15 @@ public class PlayerController : MonoBehaviour
 
         if (_disabledInput) return;
 
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            if (runSpeed > 0f)
+                _isRunning = true;
+        }
+        else
+        {
+            _isRunning = false;
+        }
 
         if (Input.GetKey(KeyCode.W))
         {
